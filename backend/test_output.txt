@@ -1,0 +1,650 @@
+﻿  console.log
+    Ôùç injected env (7) from .env // tip: Ôîÿ enable debugging { debug: true }
+
+      at _log (../node_modules/dotenv/lib/main.js:131:11)
+
+  console.log
+    [RBAC] Acceso denegado para usuario 7d0efe35-bde2-4099-b245-11bc88c43ee2. Roles: CLIENTE. Requeridos: SUPER_ADMIN,ADMIN,MANAGER,GERENTE_VENTAS,VENDEDOR
+
+      at src/middlewares/rbac.middleware.ts:34:15
+
+  console.error
+    [Error] GET /api/v1/ordenes/admin/todas: HttpError: Acceso denegado para su rol de usuario
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\backend\src\middlewares\rbac.middleware.ts:35:19
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\route.js:149:13)
+        at authenticate (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\backend\src\middlewares\auth.middleware.ts:26:5)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\route.js:149:13)
+        at Route.dispatch (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\route.js:119:3)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:284:15
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at router (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:47:12)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at router (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:47:12)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at jsonParser (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\body-parser\lib\types\json.js:113:7)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at cors (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:188:7)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:224:17
+        at originCallback (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:214:15)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:219:13
+        at optionsCallback (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:199:9)
+        at corsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:204:7)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:537:6)
+        at xXssProtectionMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:315:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xPoweredByMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:308:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xPermittedCrossDomainPoliciesMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:301:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xFrameOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:285:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xDownloadOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:265:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xDnsPrefetchControlMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:258:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xContentTypeOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:250:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at strictTransportSecurityMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:243:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at referrerPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:211:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at originAgentClusterMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:186:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at crossOriginResourcePolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:179:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at crossOriginOpenerPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:163:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at contentSecurityPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:128:4)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at helmetMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:539:6)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at expressInit (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\middleware\init.js:40:5)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at query (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\middleware\query.js:45:5)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\application.js:181:10)
+        at Server.app (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\express.js:39:9)
+        at Server.emit (node:events:518:28)
+        at Server.emit (node:domain:489:12)
+        at parserOnIncoming (node:_http_server:1155:12)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:117:17) {
+      statusCode: 403
+    }
+
+    [0m [90m 16 |[39m
+     [90m 17 |[39m [36mexport[39m [36mfunction[39m errorHandler(err[33m:[39m unknown[33m,[39m req[33m:[39m [33mRequest[39m[33m,[39m res[33m:[39m [33mResponse[39m[33m,[39m next[33m:[39m [33mNextFunction[39m) {
+    [31m[1m>[22m[39m[90m 18 |[39m   console[33m.[39merror([32m`[Error] ${req.method} ${req.path}:`[39m[33m,[39m err)[33m;[39m
+     [90m    |[39m           [31m[1m^[22m[39m
+     [90m 19 |[39m
+     [90m 20 |[39m   [90m// Error de validaci├│n de Zod[39m
+     [90m 21 |[39m   [36mif[39m (err [36minstanceof[39m [33mZodError[39m) {[0m
+
+      at errorHandler (src/middlewares/errorHandler.ts:18:11)
+      at Layer.handle_error (../node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:326:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at ../node_modules/express/lib/router/index.js:646:15
+      at next (../node_modules/express/lib/router/index.js:265:14)
+      at ../node_modules/express/lib/router/index.js:646:15
+      at next (../node_modules/express/lib/router/index.js:265:14)
+      at next (../node_modules/express/lib/router/route.js:141:14)
+      at Layer.handle_error (../node_modules/express/lib/router/layer.js:67:12)
+      at next (../node_modules/express/lib/router/route.js:147:13)
+      at src/middlewares/rbac.middleware.ts:35:14
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at next (../node_modules/express/lib/router/route.js:149:13)
+      at authenticate (src/middlewares/auth.middleware.ts:26:5)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at next (../node_modules/express/lib/router/route.js:149:13)
+      at Route.dispatch (../node_modules/express/lib/router/route.js:119:3)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at ../node_modules/express/lib/router/index.js:284:15
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (../node_modules/express/lib/router/index.js:175:3)
+      at router (../node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (../node_modules/express/lib/router/index.js:175:3)
+      at router (../node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at jsonParser (../node_modules/body-parser/lib/types/json.js:113:7)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at cors (../node_modules/cors/lib/index.js:188:7)
+      at ../node_modules/cors/lib/index.js:224:17
+      at originCallback (../node_modules/cors/lib/index.js:214:15)
+      at ../node_modules/cors/lib/index.js:219:13
+      at optionsCallback (../node_modules/cors/lib/index.js:199:9)
+      at corsMiddleware (../node_modules/cors/lib/index.js:204:7)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at internalNext (../node_modules/helmet/index.cjs:537:6)
+      at xXssProtectionMiddleware (../node_modules/helmet/index.cjs:315:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xPoweredByMiddleware (../node_modules/helmet/index.cjs:308:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xPermittedCrossDomainPoliciesMiddleware (../node_modules/helmet/index.cjs:301:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xFrameOptionsMiddleware (../node_modules/helmet/index.cjs:285:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xDownloadOptionsMiddleware (../node_modules/helmet/index.cjs:265:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xDnsPrefetchControlMiddleware (../node_modules/helmet/index.cjs:258:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xContentTypeOptionsMiddleware (../node_modules/helmet/index.cjs:250:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at strictTransportSecurityMiddleware (../node_modules/helmet/index.cjs:243:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at referrerPolicyMiddleware (../node_modules/helmet/index.cjs:211:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at originAgentClusterMiddleware (../node_modules/helmet/index.cjs:186:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at crossOriginResourcePolicyMiddleware (../node_modules/helmet/index.cjs:179:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at crossOriginOpenerPolicyMiddleware (../node_modules/helmet/index.cjs:163:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at contentSecurityPolicyMiddleware (../node_modules/helmet/index.cjs:128:4)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at helmetMiddleware (../node_modules/helmet/index.cjs:539:6)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at expressInit (../node_modules/express/lib/middleware/init.js:40:5)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at query (../node_modules/express/lib/middleware/query.js:45:5)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+
+  console.error
+    [Error] GET /api/v1/ordenes/admin/todas: HttpError: Token de acceso no proporcionado
+        at authenticate (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\backend\src\middlewares\auth.middleware.ts:10:17)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\route.js:149:13)
+        at Route.dispatch (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\route.js:119:3)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:284:15
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at router (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:47:12)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at router (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:47:12)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at jsonParser (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\body-parser\lib\types\json.js:113:7)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at cors (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:188:7)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:224:17
+        at originCallback (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:214:15)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:219:13
+        at optionsCallback (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:199:9)
+        at corsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:204:7)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:537:6)
+        at xXssProtectionMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:315:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xPoweredByMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:308:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xPermittedCrossDomainPoliciesMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:301:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xFrameOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:285:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xDownloadOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:265:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xDnsPrefetchControlMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:258:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xContentTypeOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:250:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at strictTransportSecurityMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:243:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at referrerPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:211:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at originAgentClusterMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:186:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at crossOriginResourcePolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:179:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at crossOriginOpenerPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:163:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at contentSecurityPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:128:4)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at helmetMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:539:6)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at expressInit (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\middleware\init.js:40:5)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at query (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\middleware\query.js:45:5)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\application.js:181:10)
+        at Server.app (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\express.js:39:9)
+        at Server.emit (node:events:518:28)
+        at Server.emit (node:domain:489:12)
+        at parserOnIncoming (node:_http_server:1155:12)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:117:17) {
+      statusCode: 401
+    }
+
+    [0m [90m 16 |[39m
+     [90m 17 |[39m [36mexport[39m [36mfunction[39m errorHandler(err[33m:[39m unknown[33m,[39m req[33m:[39m [33mRequest[39m[33m,[39m res[33m:[39m [33mResponse[39m[33m,[39m next[33m:[39m [33mNextFunction[39m) {
+    [31m[1m>[22m[39m[90m 18 |[39m   console[33m.[39merror([32m`[Error] ${req.method} ${req.path}:`[39m[33m,[39m err)[33m;[39m
+     [90m    |[39m           [31m[1m^[22m[39m
+     [90m 19 |[39m
+     [90m 20 |[39m   [90m// Error de validaci├│n de Zod[39m
+     [90m 21 |[39m   [36mif[39m (err [36minstanceof[39m [33mZodError[39m) {[0m
+
+      at errorHandler (src/middlewares/errorHandler.ts:18:11)
+      at Layer.handle_error (../node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:326:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at ../node_modules/express/lib/router/index.js:646:15
+      at next (../node_modules/express/lib/router/index.js:265:14)
+      at ../node_modules/express/lib/router/index.js:646:15
+      at next (../node_modules/express/lib/router/index.js:265:14)
+      at next (../node_modules/express/lib/router/route.js:141:14)
+      at Layer.handle_error (../node_modules/express/lib/router/layer.js:67:12)
+      at next (../node_modules/express/lib/router/route.js:147:13)
+      at Layer.handle_error (../node_modules/express/lib/router/layer.js:67:12)
+      at next (../node_modules/express/lib/router/route.js:147:13)
+      at authenticate (src/middlewares/auth.middleware.ts:10:12)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at next (../node_modules/express/lib/router/route.js:149:13)
+      at Route.dispatch (../node_modules/express/lib/router/route.js:119:3)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at ../node_modules/express/lib/router/index.js:284:15
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (../node_modules/express/lib/router/index.js:175:3)
+      at router (../node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (../node_modules/express/lib/router/index.js:175:3)
+      at router (../node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at jsonParser (../node_modules/body-parser/lib/types/json.js:113:7)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at cors (../node_modules/cors/lib/index.js:188:7)
+      at ../node_modules/cors/lib/index.js:224:17
+      at originCallback (../node_modules/cors/lib/index.js:214:15)
+      at ../node_modules/cors/lib/index.js:219:13
+      at optionsCallback (../node_modules/cors/lib/index.js:199:9)
+      at corsMiddleware (../node_modules/cors/lib/index.js:204:7)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at internalNext (../node_modules/helmet/index.cjs:537:6)
+      at xXssProtectionMiddleware (../node_modules/helmet/index.cjs:315:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xPoweredByMiddleware (../node_modules/helmet/index.cjs:308:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xPermittedCrossDomainPoliciesMiddleware (../node_modules/helmet/index.cjs:301:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xFrameOptionsMiddleware (../node_modules/helmet/index.cjs:285:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xDownloadOptionsMiddleware (../node_modules/helmet/index.cjs:265:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xDnsPrefetchControlMiddleware (../node_modules/helmet/index.cjs:258:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xContentTypeOptionsMiddleware (../node_modules/helmet/index.cjs:250:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at strictTransportSecurityMiddleware (../node_modules/helmet/index.cjs:243:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at referrerPolicyMiddleware (../node_modules/helmet/index.cjs:211:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at originAgentClusterMiddleware (../node_modules/helmet/index.cjs:186:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at crossOriginResourcePolicyMiddleware (../node_modules/helmet/index.cjs:179:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at crossOriginOpenerPolicyMiddleware (../node_modules/helmet/index.cjs:163:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at contentSecurityPolicyMiddleware (../node_modules/helmet/index.cjs:128:4)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at helmetMiddleware (../node_modules/helmet/index.cjs:539:6)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at expressInit (../node_modules/express/lib/middleware/init.js:40:5)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at query (../node_modules/express/lib/middleware/query.js:45:5)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+
+  console.log
+    [RBAC] Acceso denegado para usuario 7d0efe35-bde2-4099-b245-11bc88c43ee2. Roles: CLIENTE. Requeridos: SUPER_ADMIN,ADMIN,MANAGER,GERENTE_INVENTARIO
+
+      at src/middlewares/rbac.middleware.ts:34:15
+
+  console.error
+    [Error] GET /api/v1/inventario/alertas: HttpError: Acceso denegado para su rol de usuario
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\backend\src\middlewares\rbac.middleware.ts:35:19
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at authenticate (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\backend\src\middlewares\auth.middleware.ts:26:5)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at router (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:47:12)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at router (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:47:12)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at jsonParser (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\body-parser\lib\types\json.js:113:7)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at cors (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:188:7)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:224:17
+        at originCallback (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:214:15)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:219:13
+        at optionsCallback (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:199:9)
+        at corsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\cors\lib\index.js:204:7)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:537:6)
+        at xXssProtectionMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:315:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xPoweredByMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:308:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xPermittedCrossDomainPoliciesMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:301:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xFrameOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:285:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xDownloadOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:265:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xDnsPrefetchControlMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:258:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at xContentTypeOptionsMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:250:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at strictTransportSecurityMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:243:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at referrerPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:211:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at originAgentClusterMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:186:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at crossOriginResourcePolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:179:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at crossOriginOpenerPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:163:3)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at contentSecurityPolicyMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:128:4)
+        at internalNext (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:535:6)
+        at helmetMiddleware (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\helmet\index.cjs:539:6)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at expressInit (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\middleware\init.js:40:5)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at query (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\middleware\query.js:45:5)
+        at Layer.handle [as handle_request] (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\layer.js:95:5)
+        at trim_prefix (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:328:13)
+        at C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:286:9
+        at Function.process_params (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:346:12)
+        at next (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:280:10)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\router\index.js:175:3)
+        at Function.handle (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\application.js:181:10)
+        at Server.app (C:\Users\USERJSSV\Documents\UNT zzz\7mo ciclo\Ing Software\ZAI_02_IngSoftware\node_modules\express\lib\express.js:39:9)
+        at Server.emit (node:events:518:28)
+        at Server.emit (node:domain:489:12)
+        at parserOnIncoming (node:_http_server:1155:12)
+        at HTTPParser.parserOnHeadersComplete (node:_http_common:117:17) {
+      statusCode: 403
+    }
+
+    [0m [90m 16 |[39m
+     [90m 17 |[39m [36mexport[39m [36mfunction[39m errorHandler(err[33m:[39m unknown[33m,[39m req[33m:[39m [33mRequest[39m[33m,[39m res[33m:[39m [33mResponse[39m[33m,[39m next[33m:[39m [33mNextFunction[39m) {
+    [31m[1m>[22m[39m[90m 18 |[39m   console[33m.[39merror([32m`[Error] ${req.method} ${req.path}:`[39m[33m,[39m err)[33m;[39m
+     [90m    |[39m           [31m[1m^[22m[39m
+     [90m 19 |[39m
+     [90m 20 |[39m   [90m// Error de validaci├│n de Zod[39m
+     [90m 21 |[39m   [36mif[39m (err [36minstanceof[39m [33mZodError[39m) {[0m
+
+      at errorHandler (src/middlewares/errorHandler.ts:18:11)
+      at Layer.handle_error (../node_modules/express/lib/router/layer.js:71:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:326:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at ../node_modules/express/lib/router/index.js:646:15
+      at next (../node_modules/express/lib/router/index.js:265:14)
+      at ../node_modules/express/lib/router/index.js:646:15
+      at next (../node_modules/express/lib/router/index.js:265:14)
+      at src/middlewares/rbac.middleware.ts:35:14
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at authenticate (src/middlewares/auth.middleware.ts:26:5)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (../node_modules/express/lib/router/index.js:175:3)
+      at router (../node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at Function.handle (../node_modules/express/lib/router/index.js:175:3)
+      at router (../node_modules/express/lib/router/index.js:47:12)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at jsonParser (../node_modules/body-parser/lib/types/json.js:113:7)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at cors (../node_modules/cors/lib/index.js:188:7)
+      at ../node_modules/cors/lib/index.js:224:17
+      at originCallback (../node_modules/cors/lib/index.js:214:15)
+      at ../node_modules/cors/lib/index.js:219:13
+      at optionsCallback (../node_modules/cors/lib/index.js:199:9)
+      at corsMiddleware (../node_modules/cors/lib/index.js:204:7)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at internalNext (../node_modules/helmet/index.cjs:537:6)
+      at xXssProtectionMiddleware (../node_modules/helmet/index.cjs:315:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xPoweredByMiddleware (../node_modules/helmet/index.cjs:308:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xPermittedCrossDomainPoliciesMiddleware (../node_modules/helmet/index.cjs:301:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xFrameOptionsMiddleware (../node_modules/helmet/index.cjs:285:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xDownloadOptionsMiddleware (../node_modules/helmet/index.cjs:265:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xDnsPrefetchControlMiddleware (../node_modules/helmet/index.cjs:258:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at xContentTypeOptionsMiddleware (../node_modules/helmet/index.cjs:250:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at strictTransportSecurityMiddleware (../node_modules/helmet/index.cjs:243:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at referrerPolicyMiddleware (../node_modules/helmet/index.cjs:211:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at originAgentClusterMiddleware (../node_modules/helmet/index.cjs:186:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at crossOriginResourcePolicyMiddleware (../node_modules/helmet/index.cjs:179:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at crossOriginOpenerPolicyMiddleware (../node_modules/helmet/index.cjs:163:3)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at contentSecurityPolicyMiddleware (../node_modules/helmet/index.cjs:128:4)
+      at internalNext (../node_modules/helmet/index.cjs:535:6)
+      at helmetMiddleware (../node_modules/helmet/index.cjs:539:6)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at expressInit (../node_modules/express/lib/middleware/init.js:40:5)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+      at next (../node_modules/express/lib/router/index.js:280:10)
+      at query (../node_modules/express/lib/middleware/query.js:45:5)
+      at Layer.handle [as handle_request] (../node_modules/express/lib/router/layer.js:95:5)
+      at trim_prefix (../node_modules/express/lib/router/index.js:328:13)
+      at ../node_modules/express/lib/router/index.js:286:9
+      at Function.process_params (../node_modules/express/lib/router/index.js:346:12)
+
+npx : PASS tests/rbac.test.ts (15.044 s)
+En línea: 1 Carácter: 5
++ & { npx jest tests/rbac.test.ts --no-cache --detectOpenHandles --forc ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (PASS tests/rbac.test.ts (15.044 s 
+   ):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  RBAC - Control de Acceso basado en Roles
+    Acceso a Rutas Administrativas
+      ÔêÜ Debe permitir a un ADMIN listar todas las ├│rdenes (200) (129 ms)
+      ÔêÜ Debe denegar a un CLIENTE listar todas las ├│rdenes (403) (138 ms)
+      ÔêÜ Debe denegar acceso a usuarios no autenticados (401) (285 ms)
+    Acceso a Inventario
+      ÔêÜ Debe permitir a un ADMIN ver alertas de inventario (200) (259 ms)
+      ÔêÜ Debe denegar a un CLIENTE ver alertas de inventario (403) (59 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        15.202 s
+Ran all test suites matching /tests\\rbac.test.ts/i.
