@@ -11,8 +11,20 @@ import { ReporteService } from './services/reporte.service';
 
 const app = express();
 
-// 1. Seguridad básica (Headers)
-app.use(helmet());
+// 1. Seguridad básica (Headers) con CSP personalizada
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", config.clientUrl, "https://plankton-app-4r36s.ondigitalocean.app"],
+      scriptSrc: ["'self'", ...(config.nodeEnv !== 'production' ? ["'unsafe-eval'"] : [])],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", 'data:'],
+      objectSrc: ["'none'"],
+      baseUri: ["'self'"],
+    }
+  }
+}));
 
 // 2. CORS
 app.use(cors({ origin: config.clientUrl, credentials: true }));

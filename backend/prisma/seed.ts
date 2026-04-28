@@ -1,6 +1,7 @@
 import { PrismaClient, EstadoProducto, TipoAtributo, TipoMovimiento, MetodoPago, EstadoPago, TipoConfiguracion, TipoAjuste, EstadoOrdenCompra } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
 import { DateTime } from 'luxon';
+import { randomUUID } from 'crypto';
 
 const prisma = new PrismaClient();
 
@@ -106,30 +107,53 @@ async function main() {
   });
 
   const clientesData = [];
+  // Verificar si la columna `limite_credito` existe en la tabla de clientes
+  const limiteCreditoExistsResult: any = await prisma.$queryRaw`SELECT column_name FROM information_schema.columns WHERE table_name = 'cli_clientes' AND column_name = 'limite_credito' LIMIT 1`;
+  const hasLimiteCredito = Array.isArray(limiteCreditoExistsResult) ? limiteCreditoExistsResult.length > 0 : !!limiteCreditoExistsResult;
+
   for (let i = 0; i < 30; i++) {
     const nombre = getRandom(NOMBRES_PERU);
     const apellido = getRandom(APELLIDOS_PERU);
     const dni = generateDNI();
     const email = `${nombre.toLowerCase()}.${apellido.toLowerCase()}${i}@gmail.com`;
-
+    // Primero crear el usuario (siempre)
     const user = await prisma.segUsuario.create({
       data: {
         correo: email,
         contrasenaHash: passwordHash,
-        roles: { create: { rolId: roles[2].id } },
-        cliente: {
-          create: {
-            nombre,
-            apellido,
-            documentoIdentidad: dni,
-            telefono: '9' + getRandomInt(10000000, 99999999),
-            activo: true
-          }
-        }
-      },
-      include: { cliente: true }
+        roles: { create: { rolId: roles[2].id } }
+      }
     });
-    if (user.cliente) clientesData.push(user.cliente);
+
+    const telefono = '9' + getRandomInt(10000000, 99999999);
+
+    if (hasLimiteCredito) {
+      // Si la columna existe, usar el cliente via Prisma normalmente
+      const cliente = await prisma.cliCliente.create({
+        data: {
+          usuarioId: user.id,
+          nombre,
+          apellido,
+          documentoIdentidad: dni,
+          telefono,
+          activo: true
+        }
+      });
+      clientesData.push(cliente);
+    } else {
+      // Si la columna NO existe en la DB, insertar con SQL crudo evitando la columna problemática
+      const clientId = randomUUID();
+      try {
+        await prisma.$executeRaw`
+          INSERT INTO cli_clientes (id, usuario_id, nombre, apellido, documento_identidad, telefono, activo, created_at, updated_at)
+          VALUES (${clientId}::uuid, ${user.id}::uuid, ${nombre}, ${apellido}, ${dni}, ${telefono}, true, now(), now())
+        `;
+        // Guardar un objeto parcial para usos posteriores en el seed
+        clientesData.push({ id: clientId, usuarioId: user.id, nombre, apellido, telefono });
+      } catch (e) {
+        console.warn('No se pudo crear cliente con SQL crudo, se omite:', e);
+      }
+    }
   }
 
   // Direcciones para 15 clientes
