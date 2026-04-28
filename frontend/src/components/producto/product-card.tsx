@@ -58,7 +58,7 @@ export const ProductCard = ({ producto }: Props) => {
     <div className="border rounded-lg overflow-hidden flex flex-col h-full bg-card shadow-sm hover:shadow-md transition-shadow">
       <div className="relative h-48 overflow-hidden bg-muted">
         <img 
-          src={producto.imagenes[0]?.url || 'https://placehold.co/300x300?text=Sin+Imagen'} 
+          src={producto.imagenes[0]?.url || '/images/default.svg'} 
           alt={producto.nombre} 
           className="w-full h-full object-cover transition-transform hover:scale-105"
         />

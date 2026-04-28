@@ -75,7 +75,7 @@ export default function CartItem({ item }: Props) {
 
   return (
     <div className="flex items-center gap-4 border p-4 rounded-lg bg-card">
-      <img src={item.imagenUrl} alt={item.nombre} className="w-20 h-20 object-cover rounded-md bg-muted" />
+      <img src={item.imagenUrl || '/images/default.svg'} alt={item.nombre} className="w-20 h-20 object-cover rounded-md bg-muted" />
       
       <div className="flex-grow">
         <h3 className="font-semibold text-sm line-clamp-1">{item.nombre}</h3>

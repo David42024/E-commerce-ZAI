@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { categoriaService, Categoria } from '@/services/categoria.service';
 import { unidadMedidaService, UnidadMedida } from '@/services/unidad-medida.service';
+import { productoService } from '@/services/producto.service';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Loader2, X } from 'lucide-react';
+import { Loader2, X, Upload } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 interface ProductoFormProps {
   producto?: any;
@@ -13,7 +15,7 @@ interface ProductoFormProps {
   isSaving: boolean;
 }
 
-const DEFAULT_PRODUCT_IMAGE_URL = 'https://z-cdn.chatglm.cn/z-ai/static/logo.svg';
+const DEFAULT_PRODUCT_IMAGE_URL = '/images/default.svg';
 
 export function ProductoForm({ producto, onSave, onCancel, isSaving }: ProductoFormProps) {
   const [formData, setFormData] = useState({
@@ -32,6 +34,26 @@ export function ProductoForm({ producto, onSave, onCancel, isSaving }: ProductoF
   });
 
   const [newImageUrl, setNewImageUrl] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setIsUploading(true);
+      const res = await productoService.subirImagen(file);
+      setFormData(prev => ({
+        ...prev,
+        imagenes: [...prev.imagenes, { url: res.url, orden: prev.imagenes.length }]
+      }));
+      toast.success('Imagen subida con éxito');
+    } catch (error) {
+      toast.error('Error al subir la imagen');
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
 const { data: categoriasData } = useQuery({
     queryKey: ['categorias'],
@@ -230,23 +252,43 @@ const { data: categoriasData } = useQuery({
         </div>
 
         <div className="space-y-4 md:col-span-2 border-t pt-4">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <label className="text-sm font-medium">Imágenes del Producto (Mín. 1)</label>
-            <div className="flex gap-2">
-              <Input 
-                placeholder="URL de la imagen (ej. https://...)" 
-                value={newImageUrl}
-                onChange={(e) => setNewImageUrl(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    addImage();
-                  }
-                }}
-              />
-              <Button type="button" onClick={addImage} variant="secondary">
-                Agregar
-              </Button>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-xs text-muted-foreground">Subir archivo</label>
+                <div className="flex gap-2">
+                  <Input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    disabled={isUploading}
+                    className="cursor-pointer"
+                  />
+                  {isUploading && <Loader2 className="h-4 w-4 animate-spin self-center" />}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs text-muted-foreground">O agregar por URL</label>
+                <div className="flex gap-2">
+                  <Input 
+                    placeholder="https://..." 
+                    value={newImageUrl}
+                    onChange={(e) => setNewImageUrl(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addImage();
+                      }
+                    }}
+                  />
+                  <Button type="button" onClick={addImage} variant="secondary">
+                    Agregar
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
 

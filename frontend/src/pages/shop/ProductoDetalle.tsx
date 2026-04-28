@@ -74,7 +74,7 @@ export default function ProductoDetalle() {
         <div className="flex flex-col gap-4">
           <div className="aspect-square w-full overflow-hidden rounded-2xl border bg-muted/30">
             <img 
-              src={p.imagenes[imgSelected]?.url} 
+              src={p.imagenes[imgSelected]?.url || '/images/default.svg'} 
               alt={p.nombre} 
               className="w-full h-full object-cover transition-all hover:scale-105" 
             />
@@ -82,14 +82,14 @@ export default function ProductoDetalle() {
           <div className="flex gap-3 overflow-x-auto pb-2">
             {p.imagenes.map((img, i) => (
               <button 
-                key={img.id} 
+                key={img.id || i} 
                 onClick={() => setImgSelected(i)} 
                 className={cn(
                   "relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all",
                   imgSelected === i ? "border-primary ring-2 ring-primary/20" : "border-transparent hover:border-muted-foreground/30"
                 )}
               >
-                <img src={img.url} className="w-full h-full object-cover" />
+                <img src={img.url || '/images/default.svg'} className="w-full h-full object-cover" />
               </button>
             ))}
           </div>

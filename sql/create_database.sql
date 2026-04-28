@@ -235,9 +235,9 @@ CREATE TABLE IF NOT EXISTS cat_imagenes_producto (
     orden INT DEFAULT 0 CHECK (orden >= 0),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
--- Añadir imagen placeholder a los 20 productos
+-- Añadir imagen local a los productos
 INSERT INTO cat_imagenes_producto (producto_id, url, orden)
-SELECT id, 'https://placehold.co/600x600/EEE/31343C?text=' || REPLACE(nombre, ' ', '+'), 1 FROM cat_productos;
+SELECT id, '/images/default.svg', 1 FROM cat_productos;
 
 CREATE TABLE IF NOT EXISTS cat_etiquetas (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),

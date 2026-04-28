@@ -182,7 +182,7 @@ export default function ProductosAdmin() {
                           <div className="flex items-center gap-4">
                             <div className="h-12 w-12 rounded-lg overflow-hidden border bg-muted flex-shrink-0">
                               <img 
-                                src={p.imagenes?.[0]?.url || 'https://via.placeholder.com/100'} 
+                                src={p.imagenes?.[0]?.url || '/images/default.svg'} 
                                 alt={p.nombre} 
                                 className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" 
                               />

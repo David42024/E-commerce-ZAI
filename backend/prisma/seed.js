@@ -244,7 +244,7 @@ async function main() {
                 estado: client_1.EstadoProducto.ACTIVO,
                 imagenes: {
                     create: [
-                        { url: `https://z-cdn.chatglm.cn/z-ai/static/logo.svg`, orden: 0 }
+                        { url: `/images/default.svg`, orden: 0 }
                     ]
                 },
                 stock: {

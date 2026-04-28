@@ -47,6 +47,9 @@ app.get('/api/v1/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// 6. Archivos estáticos para subidas
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
 const reporteService = new ReporteService();
 
 const escapeHtml = (value: unknown) => String(value ?? '')

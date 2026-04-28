@@ -3,7 +3,7 @@ import { FiltroProductoDto, CrearProductoDto } from '../schemas/producto.schema'
 
 const prisma = new PrismaClient();
 
-const DEFAULT_PRODUCT_IMAGE_URL = 'https://z-cdn.chatglm.cn/z-ai/static/logo.svg';
+const DEFAULT_PRODUCT_IMAGE_URL = '/images/default.svg';
 
 export class ProductoRepository {
   
