@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { uploadProducto } from '../middlewares/upload';
-import { authenticate, authorize } from '../middlewares/auth';
+import { authenticate } from '../middlewares/auth.middleware';
+import { requireRole } from '../middlewares/rbac.middleware';
 
 const router = Router();
 
@@ -27,7 +28,7 @@ const router = Router();
  *       400:
  *         description: Error en la subida
  */
-router.post('/producto', authenticate, authorize(['ADMIN', 'ALMACENERO']), uploadProducto.single('image'), (req, res) => {
+router.post('/producto', authenticate, requireRole('ADMIN', 'ALMACENERO'), uploadProducto.single('image'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No se subió ninguna imagen' });
   }
