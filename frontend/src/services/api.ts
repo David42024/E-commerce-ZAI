@@ -4,8 +4,21 @@ import toast from 'react-hot-toast';
 
 /// <reference types="vite/client" />
 
+const apiBaseUrl = (() => {
+  const configuredUrl = import.meta.env.VITE_API_URL?.trim();
+  if (!configuredUrl) {
+    return '/api/v1';
+  }
+
+  if (configuredUrl.endsWith('/api/v1')) {
+    return configuredUrl;
+  }
+
+  return `${configuredUrl.replace(/\/$/, '')}/api/v1`;
+})();
+
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1',
+  baseURL: apiBaseUrl,
   withCredentials: true, // Para cookies HttpOnly (Refresh Token en el futuro)
 });
 
