@@ -47,6 +47,9 @@ EXPOSE 3000
 # 3. Start backend
 
 CMD ["sh", "-c", "\
-npm run prisma:migrate:prod --workspace=backend && \
-if [ \"$RUN_SEED\" = \"true\" ]; then echo 'Running seed...' && node backend/dist/prisma/seed.js; else echo 'Skipping seed'; fi && \
+if [ \"$RUN_SEED\" = \"true\" ]; then \
+  echo 'Running seed...' && node backend/dist/prisma/seed.js; \
+else \
+  echo 'Skipping seed'; \
+fi && \
 npm run start --workspace=backend"]
