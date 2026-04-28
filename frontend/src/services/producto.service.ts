@@ -31,15 +31,4 @@ export const productoService = {
     const res = await api.delete<ApiResponse<void>>(`/productos/${id}`);
     return res.data;
   },
-
-  subirImagen: async (file: File) => {
-    const formData = new FormData();
-    formData.append('image', file);
-    const res = await api.post<{ message: string; url: string }>('/upload/producto', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    return res.data;
-  },
 };
