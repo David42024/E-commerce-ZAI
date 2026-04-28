@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../lib/prisma';
 import { InventarioRepository } from '../repositories/inventario.repo';
 import { HttpError } from '../middlewares/errorHandler';
 import { AjusteInventarioDto } from '../schemas/inventario.schema';
-
-const prisma = new PrismaClient();
 
 export class InventarioService {
   private repo = new InventarioRepository();

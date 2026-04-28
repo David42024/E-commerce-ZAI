@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../lib/prisma';
 import { CrearUsuarioDto, ActualizarUsuarioDto } from '../schemas/usuario.schema';
-
-const prisma = new PrismaClient();
 
 export class UsuarioRepository {
   async listar() {

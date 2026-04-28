@@ -1,7 +1,6 @@
-import { PrismaClient, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+import prisma from '../lib/prisma';
 import { FiltroOrdenDto } from '../schemas/orden.schema';
-
-const prisma = new PrismaClient();
 
 export class OrdenRepository {
 

@@ -1,7 +1,6 @@
-import { PrismaClient, SegUsuario } from '@prisma/client';
+import { SegUsuario } from '@prisma/client';
 import { RegistroDto } from '../schemas/auth.schema';
-
-const prisma = new PrismaClient();
+import prisma from '../lib/prisma';
 
 export class AuthRepository {
   

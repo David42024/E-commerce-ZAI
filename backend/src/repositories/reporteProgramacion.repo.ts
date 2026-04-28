@@ -1,6 +1,5 @@
-import { PrismaClient, FrecuenciaReporte } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { FrecuenciaReporte } from '@prisma/client';
+import prisma from '../lib/prisma';
 
 export class ReporteProgramacionRepository {
   async listar() {

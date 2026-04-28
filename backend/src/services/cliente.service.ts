@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../lib/prisma';
 import { ClienteRepository } from '../repositories/cliente.repo';
 import { HttpError } from '../middlewares/errorHandler';
 import { UpdatePerfilDto, CrearDireccionDto } from '../schemas/cliente.schema';
-
-const prisma = new PrismaClient();
 
 export class ClienteService {
   private repo = new ClienteRepository();

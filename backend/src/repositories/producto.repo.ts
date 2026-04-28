@@ -1,7 +1,6 @@
-import { PrismaClient, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+import prisma from '../lib/prisma';
 import { FiltroProductoDto, CrearProductoDto } from '../schemas/producto.schema';
-
-const prisma = new PrismaClient();
 
 const DEFAULT_PRODUCT_IMAGE_URL = '/images/default.svg';
 

@@ -1,11 +1,10 @@
-import { PrismaClient, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+import prisma from '../lib/prisma';
 import { OrdenRepository } from '../repositories/orden.repo';
 import { CarritoRepository } from '../repositories/carrito.repo';
 import { ClienteRepository } from '../repositories/cliente.repo';
 import { HttpError } from '../middlewares/errorHandler';
 import { FiltroOrdenDto, CambiarEstadoDto, CrearOrdenDto } from '../schemas/orden.schema';
-
-const prisma = new PrismaClient();
 
 const MOCK_METODO_ENVIO_STANDARD = '11111111-1111-1111-1111-111111111111';
 const MOCK_METODO_ENVIO_EXPRESS = '22222222-2222-2222-2222-222222222222';
