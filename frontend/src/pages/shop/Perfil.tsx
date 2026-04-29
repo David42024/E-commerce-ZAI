@@ -59,18 +59,18 @@ export default function Perfil() {
 
         <div className="grid gap-8">
           {/* Información de Cuenta */}
-          <div className="border rounded-2xl p-6 bg-primary/5 border-primary/10 flex items-center justify-between">
+          <div className="border rounded-2xl p-6 bg-primary/5 dark:bg-primary/10 border-primary/10 dark:border-primary/20 flex items-center justify-between">
             <div className="space-y-1">
-              <p className="text-xs font-bold uppercase tracking-wider text-primary/60">Cuenta de Usuario</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-primary/60 dark:text-primary/40">Cuenta de Usuario</p>
               <p className="font-bold text-lg text-primary">{usuario?.correo}</p>
             </div>
-            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
               <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
             </div>
           </div>
 
           <form onSubmit={handleUpdate} className="space-y-8">
-            <div className="border rounded-2xl p-6 md:p-8 bg-card shadow-sm ring-1 ring-border/50 space-y-6">
+            <div className="border rounded-2xl p-6 md:p-8 bg-card dark:bg-card/50 shadow-sm ring-1 ring-border/50 dark:ring-primary/10 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground ml-1">Nombre</label>
@@ -78,7 +78,7 @@ export default function Perfil() {
                     value={form.nombre} 
                     onChange={(e) => setForm({ ...form, nombre: e.target.value })} 
                     required 
-                    className="h-11"
+                    className="h-11 bg-background dark:bg-muted/10"
                   />
                 </div>
                 <div className="space-y-2">
@@ -87,7 +87,7 @@ export default function Perfil() {
                     value={form.apellido} 
                     onChange={(e) => setForm({ ...form, apellido: e.target.value })} 
                     required 
-                    className="h-11"
+                    className="h-11 bg-background dark:bg-muted/10"
                   />
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default function Perfil() {
                   value={form.documentoIdentidad} 
                   onChange={(e) => setForm({ ...form, documentoIdentidad: e.target.value })} 
                   maxLength={8} 
-                  className="h-11"
+                  className="h-11 bg-background dark:bg-muted/10"
                   placeholder="8 dígitos"
                 />
               </div>
@@ -109,7 +109,7 @@ export default function Perfil() {
                   value={form.telefono} 
                   onChange={(e) => setForm({ ...form, telefono: e.target.value })} 
                   maxLength={9} 
-                  className="h-11"
+                  className="h-11 bg-background dark:bg-muted/10"
                   placeholder="9 dígitos"
                 />
               </div>
@@ -117,7 +117,7 @@ export default function Perfil() {
 
             <Button 
               type="submit" 
-              className="w-full h-12 font-bold shadow-lg shadow-primary/20 active:scale-[0.98] transition-all" 
+              className="w-full h-12 font-bold shadow-lg shadow-primary/20 dark:shadow-primary/5 active:scale-[0.98] transition-all" 
               disabled={loading}
             >
               {loading ? (

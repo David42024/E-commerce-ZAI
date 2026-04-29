@@ -114,7 +114,8 @@ export class ProductoRepository {
         ...(slug && { slug }),
         fechaInicioOferta: dto.fechaInicioOferta ? new Date(dto.fechaInicioOferta) : undefined,
         fechaFinOferta: dto.fechaFinOferta ? new Date(dto.fechaFinOferta) : undefined,
-        imagenes: imagenes ? {
+        // Solo reemplazar imágenes si viene un array CON elementos (array vacío = "no cambiar")
+        imagenes: (imagenes && imagenes.length > 0) ? {
           deleteMany: {},
           create: imagenes
         } : undefined,
@@ -142,11 +143,16 @@ export class ProductoRepository {
   async findForAdmin(dto: any) {
     const page = Number(dto.page ?? 1);
     const limit = Number(dto.limit ?? 10);
-    const search = dto.search;
+    const search = dto.search as string | undefined;
+    const categoriaId = dto.categoriaId as string | undefined;
+    const estado = dto.estado as string | undefined;
+    const orderBy = (dto.orderBy as string | undefined) ?? 'createdAt_DESC';
     const skip = (page - 1) * limit;
 
     const where: Prisma.CatProductoWhereInput = {
       activo: true,
+      ...(categoriaId && { categoriaId }),
+      ...(estado && { estado: estado as any }),
       ...(search && {
         OR: [
           { nombre: { contains: search, mode: 'insensitive' } },
@@ -155,16 +161,25 @@ export class ProductoRepository {
       })
     };
 
+    const orderMapping: Record<string, any> = {
+      createdAt_DESC: { created_at: 'desc' },
+      createdAt_ASC:  { created_at: 'asc' },
+      nombre_ASC:     { nombre: 'asc' },
+      nombre_DESC:    { nombre: 'desc' },
+      precioVenta_ASC:  { precioVenta: 'asc' },
+      precioVenta_DESC: { precioVenta: 'desc' },
+    };
+
     const [data, total] = await Promise.all([
       prisma.catProducto.findMany({
         where,
         skip,
         take: limit,
-        orderBy: { created_at: 'desc' },
+        orderBy: orderMapping[orderBy] ?? { created_at: 'desc' },
         include: {
-          categoria: { select: { nombre: true } },
+          categoria: { select: { id: true, nombre: true } },
           imagenes: { orderBy: { orden: 'asc' }, select: { id: true, url: true, orden: true } },
-          stock: { select: { stockFisico: true, stockMinimo: true } }
+          stock: { select: { stockFisico: true, stockMinimo: true, stockReservado: true } }
         }
       }),
       prisma.catProducto.count({ where })

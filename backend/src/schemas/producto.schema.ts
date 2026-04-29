@@ -34,7 +34,7 @@ export const crearProductoSchema = z.object({
     valorAtributoId: z.string().uuid(),
   })).optional(),
   imagenes: z.array(z.object({
-    url: z.string().url(),
+    url: z.string().min(1),
     orden: z.number().int().min(0).default(0),
   })).optional(),
 });

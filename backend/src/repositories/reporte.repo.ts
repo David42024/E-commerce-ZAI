@@ -253,6 +253,81 @@ export class ReporteRepository {
   }
 
   /**
+   * Obtiene análisis RFM de clientes
+   */
+  async getRFMAnalysis() {
+    return prisma.$queryRaw`
+      WITH customer_metrics AS (
+        SELECT 
+          c.id,
+          c.nombre || ' ' || c.apellido as cliente,
+          EXTRACT(DAY FROM (NOW() - MAX(o.created_at)))::int as recency,
+          COUNT(o.id)::int as frequency,
+          SUM(o."totalFinal") as monetary
+        FROM cli_clientes c
+        JOIN ord_ordenes o ON o.cliente_id = c.id
+        JOIN ord_estados_orden e ON o.estado_orden_id = e.id
+        WHERE e.nombre NOT IN ('PENDIENTE', 'CANCELADA')
+        GROUP BY c.id, c.nombre, c.apellido
+      ),
+      percentiles AS (
+        SELECT 
+          *,
+          NTILE(5) OVER (ORDER BY recency DESC) as r_score,
+          NTILE(5) OVER (ORDER BY frequency ASC) as f_score,
+          NTILE(5) OVER (ORDER BY monetary ASC) as m_score
+        FROM customer_metrics
+      )
+      SELECT 
+        id, cliente, recency, frequency, monetary,
+        r_score, f_score, m_score,
+        (r_score + f_score + m_score) as total_score
+      FROM percentiles
+      ORDER BY total_score DESC
+      LIMIT 20
+    `;
+  }
+
+  /**
+   * Obtiene análisis de cohortes (Retención mensual)
+   */
+  async getCohortAnalysis() {
+    return prisma.$queryRaw`
+      WITH first_purchase AS (
+        SELECT 
+          cliente_id,
+          DATE_TRUNC('month', MIN(created_at)) as cohort_month
+        FROM ord_ordenes
+        GROUP BY cliente_id
+      ),
+      cohort_size AS (
+        SELECT cohort_month, COUNT(cliente_id)::int as size
+        FROM first_purchase
+        GROUP BY cohort_month
+      ),
+      retention AS (
+        SELECT 
+          fp.cohort_month,
+          DATE_TRUNC('month', o.created_at) as activity_month,
+          COUNT(DISTINCT o.cliente_id)::int as active_customers
+        FROM first_purchase fp
+        JOIN ord_ordenes o ON fp.cliente_id = o.cliente_id
+        GROUP BY 1, 2
+      )
+      SELECT 
+        TO_CHAR(r.cohort_month, 'YYYY-MM') as cohort,
+        EXTRACT(MONTH FROM AGE(r.activity_month, r.cohort_month))::int as month_number,
+        r.active_customers,
+        s.size as cohort_size,
+        ROUND((r.active_customers::float / s.size::float) * 100) as retention_rate
+      FROM retention r
+      JOIN cohort_size s ON r.cohort_month = s.cohort_month
+      WHERE r.activity_month >= r.cohort_month
+      ORDER BY r.cohort_month DESC, month_number ASC
+    `;
+  }
+
+  /**
    * Obtiene los clientes para reportes con sus métricas
    */
   async getClientesParaReporte(fechaInicio: Date, fechaFin: Date) {

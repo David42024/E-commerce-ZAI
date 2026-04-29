@@ -3,6 +3,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { useCartStore } from '@/stores/cartStore';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, LogOut, LogIn, User, LayoutDashboard, Package } from 'lucide-react';
+import { ModeToggle } from '../theme/mode-toggle';
 
 export const Navbar = () => {
   const { usuario, logout } = useAuthStore();
@@ -52,6 +53,10 @@ export const Navbar = () => {
               )}
             </Button>
           </Link>
+
+          <div className="h-6 w-px bg-border mx-2 hidden sm:block" />
+
+          <ModeToggle />
 
           <div className="h-6 w-px bg-border mx-2 hidden sm:block" />
 

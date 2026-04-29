@@ -14,7 +14,12 @@ export interface Producto {
   precioOferta: number | null;
   imagenes: { id: string; url: string; orden: number }[];
   stock: { stockFisico: number; stockReservado: number } | null;
+  descripcionLarga?: string | null;
   categoria?: {
+    id: string;
+    nombre: string;
+  } | null;
+  marca?: {
     id: string;
     nombre: string;
   } | null;

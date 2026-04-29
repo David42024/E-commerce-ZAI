@@ -25,7 +25,7 @@ export default function MisOrdenes() {
         {ordenes.map((o) => (
           <div 
             key={o.id} 
-            className="group border rounded-2xl p-6 bg-card shadow-sm ring-1 ring-border/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-all hover:ring-primary/20 hover:shadow-md"
+            className="group border rounded-2xl p-6 bg-card dark:bg-card/50 shadow-sm ring-1 ring-border/50 dark:ring-primary/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-all hover:ring-primary/20 dark:hover:ring-primary/30 hover:shadow-md"
           >
             <div className="space-y-1">
               <p className="font-bold text-lg tracking-tight group-hover:text-primary transition-colors">
@@ -44,8 +44,8 @@ export default function MisOrdenes() {
                 variant={o.estado.nombre === 'CANCELADA' ? 'destructive' : 'outline'}
                 className={cn(
                   "text-[10px] font-bold px-3",
-                  o.estado.nombre === 'PAGADA' && "bg-emerald-50 text-emerald-700 border-emerald-200",
-                  o.estado.nombre === 'PENDIENTE' && "bg-amber-50 text-amber-700 border-amber-200"
+                  o.estado.nombre === 'PAGADA' && "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20",
+                  o.estado.nombre === 'PENDIENTE' && "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20"
                 )}
               >
                 {o.estado.nombre}
@@ -55,7 +55,7 @@ export default function MisOrdenes() {
         ))}
         
         {ordenes.length === 0 && (
-          <div className="text-center py-20 border-2 border-dashed rounded-2xl bg-muted/20">
+          <div className="text-center py-20 border-2 border-dashed rounded-2xl bg-muted/20 dark:bg-muted/5 dark:border-primary/10">
             <p className="text-muted-foreground font-medium">Aún no has realizado ninguna compra.</p>
           </div>
         )}

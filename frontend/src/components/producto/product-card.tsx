@@ -5,6 +5,11 @@ import { getApiErrorMessage } from '@/lib/apiError';
 import { Button } from '@/components/ui/button';
 import { Producto } from '@/types';
 import toast from 'react-hot-toast';
+import { ShoppingCart, Eye, Package } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
+import { clsx } from 'clsx';
 
 interface Props {
   producto: Producto;
@@ -55,42 +60,81 @@ export const ProductCard = ({ producto }: Props) => {
   };
 
   return (
-    <div className="border rounded-lg overflow-hidden flex flex-col h-full bg-card shadow-sm hover:shadow-md transition-shadow">
-      <div className="relative h-48 overflow-hidden bg-muted">
+    <div className="group border dark:border-primary/10 rounded-xl overflow-hidden flex flex-col h-full bg-card dark:bg-card/50 shadow-sm hover:shadow-xl dark:hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1">
+      <div className="relative aspect-square overflow-hidden bg-muted dark:bg-muted/50">
         <img 
           src={producto.imagenes[0]?.url || '/images/default.svg'} 
           alt={producto.nombre} 
-          className="w-full h-full object-cover transition-transform hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        {tieneDescuento && (
-          <span className="absolute top-2 left-2 bg-destructive text-destructive-foreground text-xs font-bold px-2 py-1 rounded">
-            OFERTA
-          </span>
-        )}
-      </div>
-      
-      <div className="p-4 flex flex-col flex-grow">
-        <h3 className="font-medium text-sm line-clamp-2 mb-2">{producto.nombre}</h3>
         
-        <div className="mt-auto pt-4 border-t">
-          <div className="flex items-baseline gap-2">
-            <span className="text-lg font-bold text-primary">
-              S/ {precioFinal.toFixed(2)}
-            </span>
-            {tieneDescuento && (
-              <span className="text-xs text-muted-foreground line-through">
-                S/ {Number(producto.precioVenta).toFixed(2)}
-              </span>
-            )}
-          </div>
-          
+        {/* Badges */}
+        <div className="absolute top-2 left-2 flex flex-col gap-2">
+          {tieneDescuento && (
+            <Badge className="bg-destructive text-destructive-foreground font-bold shadow-sm">
+              OFERTA
+            </Badge>
+          )}
+          {stockDisponible <= 5 && stockDisponible > 0 && (
+            <Badge variant="outline" className="bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-200 dark:border-orange-500/20 font-bold backdrop-blur-sm">
+              Últimas {stockDisponible} un.
+            </Badge>
+          )}
+        </div>
+
+        {/* Quick Actions Overlay */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+          <Link to={`/producto/${producto.id}`}>
+            <Button size="icon" variant="secondary" className="rounded-full h-10 w-10 shadow-lg translate-y-4 group-hover:translate-y-0 transition-transform dark:bg-muted dark:hover:bg-muted/80">
+              <Eye className="h-5 w-5" />
+            </Button>
+          </Link>
           <Button 
-            className="w-full mt-3" 
-            size="sm" 
+            size="icon" 
+            variant="default" 
+            className="rounded-full h-10 w-10 shadow-lg translate-y-4 group-hover:translate-y-0 transition-transform delay-75"
             onClick={handleAdd}
             disabled={limiteAlcanzado}
           >
-            {stockDisponible <= 0 ? 'Agotado' : limiteAlcanzado ? 'Límite alcanzado' : 'Agregar al carrito'}
+            <ShoppingCart className="h-5 w-5" />
+          </Button>
+        </div>
+      </div>
+      
+      <div className="p-5 flex flex-col flex-grow">
+        <div className="flex justify-between items-start gap-2 mb-2">
+          <Link to={`/producto/${producto.id}`} className="hover:text-primary transition-colors">
+            <h3 className="font-bold text-base line-clamp-2">{producto.nombre}</h3>
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
+          <Package className="h-3.5 w-3.5" />
+          <span>Stock disponible: </span>
+          <span className={clsx("font-bold", stockDisponible <= 0 ? "text-destructive" : "text-foreground dark:text-foreground/90")}>
+            {stockDisponible > 0 ? stockDisponible : 'Agotado'}
+          </span>
+        </div>
+        
+        <div className="mt-auto pt-4 border-t dark:border-primary/10 flex items-center justify-between">
+          <div className="flex flex-col">
+            {tieneDescuento && (
+              <span className="text-xs text-muted-foreground line-through decoration-destructive/50">
+                S/ {Number(producto.precioVenta).toFixed(2)}
+              </span>
+            )}
+            <span className="text-xl font-black text-foreground dark:text-primary tracking-tighter">
+              S/ {precioFinal.toFixed(2)}
+            </span>
+          </div>
+          
+          <Button 
+            size="sm" 
+            className="rounded-full px-4 font-bold shadow-md hover:shadow-primary/20 active:scale-95 transition-all"
+            onClick={handleAdd}
+            disabled={limiteAlcanzado}
+          >
+            {stockDisponible <= 0 ? 'Agotado' : 'Agregar'}
           </Button>
         </div>
       </div>

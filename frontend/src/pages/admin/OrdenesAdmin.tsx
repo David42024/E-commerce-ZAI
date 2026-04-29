@@ -7,22 +7,41 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { toast } from 'react-hot-toast';
 import { DateRangeFilter } from '@/components/admin/DateRangeFilter';
-import { 
-  Search, 
-  Filter, 
-  MoreHorizontal, 
-  Eye, 
-  CheckCircle2, 
-  XCircle, 
+import {
+  Search,
+  Eye,
+  CheckCircle2,
+  XCircle,
   Clock,
-  ArrowUpDown,
   Download,
   Loader2,
   Package,
   MapPin,
   User,
-  X
+  X,
+  Calendar,
+  ClipboardList,
+  Plus
 } from 'lucide-react';
+
+import { cn } from '@/lib/utils';
+
+
+const ESTADOS = {
+  PENDIENTE: 6,
+  PAGADA: 7,
+  ENTREGADA: 8,
+  ENVIADA: 9,
+  CANCELADA: 10
+};
+
+const OPCIONES_ESTADO = [
+  { id: ESTADOS.PENDIENTE, label: 'Pendiente' },
+  { id: ESTADOS.PAGADA, label: 'Pagada' },
+  { id: ESTADOS.ENVIADA, label: 'Enviada' },
+  { id: ESTADOS.ENTREGADA, label: 'Entregada' },
+  { id: ESTADOS.CANCELADA, label: 'Cancelada' },
+];
 
 export default function OrdenesAdmin() {
   const queryClient = useQueryClient();
@@ -33,16 +52,28 @@ export default function OrdenesAdmin() {
   const [fechaFin, setFechaFin] = useState(new Date().toISOString().split('T')[0]);
   const [selectedOrden, setSelectedOrden] = useState<any>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const [orderBy, setOrderBy] = useState<string>('created_at_DESC');
+
   const limit = 10;
 
   const { data, isLoading } = useQuery({
-    queryKey: ['ordenes-admin', page, search, estado, fechaInicio, fechaFin],
-    queryFn: () => ordenService.listarTodas({ page, limit, search, estado, fechaInicio, fechaFin }),
-    refetchInterval: 30000, // Refrescar cada 30 segundos
+    queryKey: ['ordenes-admin', page, search, estado, fechaInicio, fechaFin, orderBy],
+    queryFn: () => ordenService.listarTodas({
+      page,
+      limit,
+      search,
+      estado,
+      fechaInicio,
+      fechaFin,
+      // @ts-ignore
+      orderBy
+    }),
+    refetchInterval: 30000,
   });
 
   const changeStateMutation = useMutation({
-    mutationFn: ({ id, estadoId, comentario }: { id: string, estadoId: number, comentario?: string }) => 
+    mutationFn: ({ id, estadoId, comentario }: { id: string, estadoId: number, comentario?: string }) =>
       ordenService.cambiarEstado(id, { nuevoEstadoId: estadoId, comentario }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['ordenes-admin'] });
@@ -68,6 +99,58 @@ export default function OrdenesAdmin() {
     }
   };
 
+  const handleExportCSV = async () => {
+    try {
+      setIsExporting(true);
+      const allData = await ordenService.listarTodas({
+        page: 1,
+        limit: 1000,
+        search,
+        estado,
+        fechaInicio,
+        fechaFin,
+        // @ts-ignore
+        orderBy
+      });
+
+      const items = allData.data.data;
+      if (!items || items.length === 0) {
+        toast.error('No hay datos para exportar');
+        return;
+      }
+
+      const headers = ['Orden #', 'Cliente', 'Email', 'Fecha', 'Total', 'Estado', 'Metodo Pago', 'Metodo Envio'];
+      const csvRows = (items as any[]).map((o: any) => [
+        o.numeroOrden,
+        `"${o.cliente?.nombres} ${o.cliente?.apellidos}"`,
+        o.cliente?.usuario?.correo,
+        new Date(o.created_at).toISOString().split('T')[0],
+        o.totalFinal,
+        o.estado?.nombre,
+        o.metodoPago?.nombre || o.metodoPago || 'N/A',
+        o.metodoEnvio?.nombre || o.metodoEnvio || 'N/A'
+      ].join(','));
+
+      const csvContent = "\uFEFF" + [headers.join(','), ...csvRows].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `ordenes_export_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success('Exportación completada');
+    } catch (error) {
+      console.error('Export error:', error);
+      toast.error('Error al exportar los datos');
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   const getStatusBadge = (estado: string) => {
     switch (estado) {
       case 'PAGADA':
@@ -86,179 +169,268 @@ export default function OrdenesAdmin() {
   const ordenes = data?.data?.data || [];
   const total = data?.data?.total || 0;
   const totalPages = Math.ceil(total / limit);
+  const ordenesOrdenadas = [...ordenes].sort((a: any, b: any) => {
+    if (orderBy === 'totalFinal_ASC') return Number(a.totalFinal || 0) - Number(b.totalFinal || 0);
+    if (orderBy === 'totalFinal_DESC') return Number(b.totalFinal || 0) - Number(a.totalFinal || 0);
+    if (orderBy === 'created_at_ASC') return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+  });
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Gestión de Órdenes</h1>
-          <p className="text-muted-foreground mt-1">Gestiona y supervisa todas las transacciones de la tienda.</p>
+        <div className="space-y-1">
+          <h1 className="text-3xl font-black tracking-tight flex items-center gap-3">
+            <ClipboardList className="h-8 w-8 text-primary" />
+            Centro de Operaciones
+          </h1>
+          <p className="text-muted-foreground font-bold text-xs uppercase tracking-widest">Gestión de Órdenes y Transacciones</p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="h-9 gap-2">
-            <Download className="h-4 w-4" /> Exportar
+        <div className="flex items-center gap-3">
+          <Button
+            variant="outline"
+            className="h-10 px-4 gap-2 font-bold border-2"
+            onClick={handleExportCSV}
+            disabled={isExporting}
+          >
+            {isExporting ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Download className="h-4 w-4" />
+            )}
+            {isExporting ? 'Exportando...' : 'Exportar CSV'}
           </Button>
-          <Button size="sm" className="h-9 gap-2">
-            <Filter className="h-4 w-4" /> Filtros
+          <Button className="h-10 px-6 gap-2 font-black shadow-xl shadow-primary/20 active:scale-95 transition-all">
+            <Plus className="h-5 w-5" /> NUEVA ORDEN
           </Button>
         </div>
       </div>
 
-      <Card className="border-none shadow-sm ring-1 ring-border/50 bg-card/50 mb-6">
-        <CardContent className="pt-6">
-          <DateRangeFilter 
-            fechaInicio={fechaInicio} 
-            fechaFin={fechaFin} 
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div className="md:col-span-2 relative">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Buscar por # de orden, cliente o email..."
+            className="pl-11 h-12 bg-card border-2 rounded-2xl font-medium focus-visible:ring-primary/20"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPage(1);
+            }}
+          />
+        </div>
+
+        <div className="flex min-w-[180px] flex-1 flex-col gap-1 md:flex-none">
+          <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Estado</label>
+          <select
+            className="h-12 rounded-2xl border-2 bg-background px-4 text-sm font-bold"
+            value={estado}
+            onChange={(e) => setEstado(e.target.value)}
+          >
+            <option value="">Todos los Estados</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="PAGADA">Pagada</option>
+            <option value="ENVIADA">Enviada</option>
+            <option value="ENTREGADA">Entregada</option>
+            <option value="CANCELADA">Cancelada</option>
+          </select>
+        </div>
+
+        <div className="flex min-w-[180px] flex-1 flex-col gap-1 md:flex-none">
+          <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Ordenar</label>
+          <select
+            className="h-12 rounded-2xl border-2 bg-background px-4 text-sm font-bold"
+            value={orderBy}
+            onChange={(e) => setOrderBy(e.target.value)}
+          >
+            <option value="totalFinal_DESC">Total: Mayor a Menor</option>
+            <option value="totalFinal_ASC">Total: Menor a Mayor</option>
+            <option value="created_at_DESC">Fecha: Más recientes</option>
+            <option value="created_at_ASC">Fecha: Más antiguas</option>
+          </select>
+        </div>
+      </div>
+
+      <Card className="border-2 rounded-[2rem] overflow-hidden shadow-xl shadow-black/5 ring-1 ring-border/50">
+        <CardContent className="p-8 bg-card/50">
+          <DateRangeFilter
+            fechaInicio={fechaInicio}
+            fechaFin={fechaFin}
             onChange={(inicio, fin) => {
               setFechaInicio(inicio);
               setFechaFin(fin);
               setPage(1);
-            }} 
+            }}
           />
         </CardContent>
       </Card>
 
-      <Card className="border-none shadow-none bg-transparent">
-        <CardHeader className="px-0 pt-0">
-          <div className="flex items-center gap-2">
-            <div className="relative flex-1 max-w-sm">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input 
-                placeholder="Buscar por número o cliente..." 
-                className="pl-9 h-10 bg-background"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                  setPage(1);
-                }}
-              />
-            </div>
-            <select
-              className="h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              value={estado}
-              onChange={(e) => {
-                setEstado(e.target.value);
-                setPage(1);
-              }}
-            >
-              <option value="">Todos los estados</option>
-              <option value="PENDIENTE">Pendiente</option>
-              <option value="PAGADA">Pagada</option>
-              <option value="ENVIADA">Enviada</option>
-              <option value="ENTREGADA">Entregada</option>
-              <option value="CANCELADA">Cancelada</option>
-            </select>
-          </div>
-        </CardHeader>
-        <CardContent className="px-0">
-          <div className="rounded-xl border bg-card shadow-sm overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left border-collapse">
-                <thead>
-                  <tr className="bg-muted/50 border-b transition-colors">
-                    <th className="px-4 py-3 font-medium text-muted-foreground">
-                      <button className="flex items-center gap-1 hover:text-foreground transition-colors">
-                        Orden <ArrowUpDown className="h-3 w-3" />
-                      </button>
-                    </th>
-                    <th className="px-4 py-3 font-medium text-muted-foreground">Cliente</th>
-                    <th className="px-4 py-3 font-medium text-muted-foreground">Fecha</th>
-                    <th className="px-4 py-3 font-medium text-muted-foreground text-right">Total</th>
-                    <th className="px-4 py-3 font-medium text-muted-foreground text-center">Estado</th>
-                    <th className="px-4 py-3 font-medium text-muted-foreground text-right">Acciones</th>
+      <Card className="border-2 rounded-[2rem] overflow-hidden shadow-xl shadow-black/5 ring-1 ring-border/50">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left border-collapse">
+              <thead>
+                <tr className="bg-muted/30 border-b">
+                  <th className="px-6 py-5 font-black text-muted-foreground uppercase tracking-widest text-[10px]">Referencia</th>
+                  <th className="px-6 py-5 font-black text-muted-foreground uppercase tracking-widest text-[10px]">Cliente</th>
+                  <th className="px-6 py-5 font-black text-muted-foreground uppercase tracking-widest text-[10px]">Fecha / Hora</th>
+                  <th className="px-6 py-5 font-black text-muted-foreground uppercase tracking-widest text-[10px] text-right">Total (S/)</th>
+                  <th className="px-6 py-5 font-black text-muted-foreground uppercase tracking-widest text-[10px] text-center">Estado</th>
+                  <th className="px-6 py-5 font-black text-muted-foreground uppercase tracking-widest text-[10px] text-right">Acciones</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                {isLoading ? (
+                  <tr>
+                    <td colSpan={6} className="px-6 py-20 text-center">
+                      <div className="flex flex-col items-center gap-4">
+                        <Loader2 className="h-10 w-10 animate-spin text-primary" />
+                        <p className="text-muted-foreground font-black uppercase tracking-widest text-xs">Sincronizando órdenes...</p>
+                      </div>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="divide-y">
-                  {isLoading ? (
-                    <tr>
-                      <td colSpan={6} className="px-4 py-12 text-center">
-                        <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
-                        <p className="mt-2 text-muted-foreground">Cargando órdenes...</p>
-                      </td>
-                    </tr>
-                  ) : ordenes.length === 0 ? (
-                    <tr>
-                      <td colSpan={6} className="px-4 py-12 text-center text-muted-foreground">
-                        No se encontraron órdenes.
-                      </td>
-                    </tr>
-                  ) : (
-                    ordenes.map(o => (
-                      <tr key={o.id} className="group hover:bg-muted/30 transition-colors">
-                        <td className="px-4 py-4">
-                          <span className="font-bold text-primary tabular-nums">{o.numeroOrden}</span>
-                        </td>
-                        <td className="px-4 py-4">
-                          <div className="flex flex-col leading-tight">
-                            <span className="font-medium text-foreground">{o.cliente?.nombres} {o.cliente?.apellidos}</span>
-                            <span className="text-xs text-muted-foreground">{o.cliente?.usuario?.correo}</span>
+                ) : ordenes.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="px-6 py-20 text-center">
+                      <div className="flex flex-col items-center gap-2">
+                        <Package className="h-12 w-12 text-muted-foreground/30 mb-2" />
+                        <p className="text-muted-foreground font-bold">No se encontraron órdenes con los filtros aplicados.</p>
+                        <Button variant="link" onClick={() => { setSearch(''); setEstado(''); }} className="text-primary font-black uppercase text-xs">Limpiar filtros</Button>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  ordenesOrdenadas.map((o: any) => (
+                    <tr key={o.id} className="group hover:bg-muted/20 transition-all duration-300">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                            <ClipboardList className="h-5 w-5" />
                           </div>
-                        </td>
-                        <td className="px-4 py-4 text-muted-foreground whitespace-nowrap">
-                          {new Date(o.created_at).toLocaleDateString()} {new Date(o.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </td>
-                        <td className="px-4 py-4 text-right font-medium tabular-nums">
-                          S/ {Number(o.totalFinal).toFixed(2)}
-                        </td>
-                        <td className="px-4 py-4 text-center">
+                          <div className="flex flex-col">
+                            <span className="font-black text-foreground tabular-nums">{o.numeroOrden}</span>
+                            <span className="text-[9px] font-black uppercase text-muted-foreground tracking-tighter">ID: {o.id.slice(0, 8)}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex flex-col">
+                          <span className="font-bold text-foreground">{o.cliente?.nombres} {o.cliente?.apellidos}</span>
+                          <span className="text-xs text-muted-foreground font-medium">{o.cliente?.usuario?.correo}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-2 text-foreground font-bold">
+                            <Calendar className="h-3 w-3 text-muted-foreground" />
+                            {new Date(o.created_at).toLocaleDateString()}
+                          </div>
+                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground font-bold uppercase tracking-widest">
+                            <Clock className="h-3 w-3" />
+                            {new Date(o.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <span className="font-black text-foreground text-base tabular-nums">S/ {Number(o.totalFinal).toFixed(2)}</span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex justify-center">
                           {getStatusBadge(o.estado?.nombre)}
-                        </td>
-                        <td className="px-4 py-4 text-right">
-                          <div className="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <Button 
-                              variant="ghost" 
-                              size="icon" 
-                              className="h-8 w-8"
-                              onClick={() => handleViewDetails(o.id)}
-                            >
-                              <Eye className="h-4 w-4" />
-                            </Button>
-                            {o.estado?.nombre === 'PENDIENTE' && (
-                              <Button 
-                                variant="ghost" 
-                                size="icon" 
-                                className="h-8 w-8 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50" 
-                                onClick={() => changeStateMutation.mutate({ id: o.id, estadoId: 9, comentario: 'Pago verificado por administrador' })}
-                                disabled={changeStateMutation.isPending}
-                              >
-                                <CheckCircle2 className="h-4 w-4" />
-                              </Button>
-                            )}
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className="flex items-center justify-between px-4 py-3 border-t bg-muted/20">
-              <span className="text-xs text-muted-foreground">
-                Página {page} de {totalPages || 1} ({total} órdenes totales)
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="flex justify-end gap-2">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-10 w-10 rounded-xl border-2 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition-all"
+                            onClick={() => handleViewDetails(o.id)}
+                          >
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                          <select
+                            className="
+                              h-10 rounded-xl border-2 px-3 text-xs font-bold outline-none transition
+                              bg-white text-black border-gray-300
+                              dark:bg-zinc-900 dark:text-white dark:border-zinc-700
+                              focus:ring-2 focus:ring-primary/30
+                            "
+                            value={o.estado?.nombre}
+                            onChange={(e) => {
+                              const selected = OPCIONES_ESTADO.find(
+                                op => op.label.toUpperCase() === e.target.value
+                              );
+
+                              if (!selected) return;
+
+                              if (!confirm(`¿Cambiar a ${selected.label}?`)) return;
+
+                              changeStateMutation.mutate({
+                                id: o.id,
+                                estadoId: selected.id,
+                                comentario: `Cambio a ${selected.label}`
+                              });
+                            }}
+                          >
+                            {OPCIONES_ESTADO.map(op => (
+                              <option key={op.id} value={op.label.toUpperCase()}>
+                                {op.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-between px-8 py-6 border-t bg-muted/20 gap-4">
+            <div className="flex items-center gap-3">
+              <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                Mostrando {ordenes.length} de {total} transacciones
               </span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-10 px-4 rounded-xl border-2 font-black text-xs uppercase"
+                disabled={page === 1}
+                onClick={() => setPage(p => Math.max(1, p - 1))}
+              >
+                Anterior
+              </Button>
               <div className="flex gap-1">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="h-8 px-2" 
-                  disabled={page === 1}
-                  onClick={() => setPage(p => Math.max(1, p - 1))}
-                >
-                  Anterior
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="h-8 px-2"
-                  disabled={page === totalPages || totalPages === 0}
-                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-                >
-                  Siguiente
-                </Button>
+                {[...Array(totalPages)].map((_, i) => (
+                  <Button
+                    key={i}
+                    variant={page === i + 1 ? "default" : "outline"}
+                    size="sm"
+                    className={cn(
+                      "h-10 w-10 rounded-xl border-2 font-black",
+                      page === i + 1 ? "shadow-lg shadow-primary/20" : ""
+                    )}
+                    onClick={() => setPage(i + 1)}
+                  >
+                    {i + 1}
+                  </Button>
+                )).slice(Math.max(0, page - 2), Math.min(totalPages, page + 1))}
               </div>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-10 px-4 rounded-xl border-2 font-black text-xs uppercase"
+                disabled={page === totalPages || totalPages === 0}
+                onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+              >
+                Siguiente
+              </Button>
             </div>
           </div>
         </CardContent>
@@ -354,27 +526,38 @@ export default function OrdenesAdmin() {
               <div className="flex justify-end gap-3 pt-4 border-t">
                 {selectedOrden.estado?.nombre === 'PENDIENTE' && (
                   <>
-                    <Button 
-                      variant="destructive" 
-                      onClick={() => changeStateMutation.mutate({ id: selectedOrden.id, estadoId: 10, comentario: 'Cancelada por administrador' })}
-                      disabled={changeStateMutation.isPending}
+                    <Button
+                      variant="destructive"
+                      onClick={() => changeStateMutation.mutate({
+                        id: selectedOrden.id,
+                        estadoId: ESTADOS.CANCELADA,
+                        comentario: 'Cancelada por administrador'
+                      })}
                     >
                       Cancelar Orden
                     </Button>
-                    <Button 
+
+                    <Button
                       className="bg-emerald-600 hover:bg-emerald-700"
-                      onClick={() => changeStateMutation.mutate({ id: selectedOrden.id, estadoId: 9, comentario: 'Pago verificado' })}
-                      disabled={changeStateMutation.isPending}
+                      onClick={() => changeStateMutation.mutate({
+                        id: selectedOrden.id,
+                        estadoId: ESTADOS.PAGADA,
+                        comentario: 'Pago verificado'
+                      })}
                     >
                       Marcar como Pagada
                     </Button>
                   </>
                 )}
+
                 {selectedOrden.estado?.nombre === 'PAGADA' && (
-                  <Button 
+                  <Button
                     className="bg-blue-600 hover:bg-blue-700"
-                    onClick={() => changeStateMutation.mutate({ id: selectedOrden.id, estadoId: 8, comentario: 'Orden enviada' })}
-                    disabled={changeStateMutation.isPending}
+                    onClick={() => changeStateMutation.mutate({
+                      id: selectedOrden.id,
+                      estadoId: ESTADOS.ENVIADA,
+                      comentario: 'Orden enviada'
+                    })}
                   >
                     Marcar como Enviada
                   </Button>

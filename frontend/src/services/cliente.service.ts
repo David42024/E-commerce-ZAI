@@ -10,5 +10,10 @@ export const clienteService = {
   obtenerDetalleAdmin: async (id: string) => {
     const res = await api.get<ApiResponse<any>>(`/clientes/admin/${id}`);
     return res.data;
+  },
+
+  getPerfil: async () => {
+    const res = await api.get<ApiResponse<any>>('/clientes/perfil');
+    return res.data;
   }
 };

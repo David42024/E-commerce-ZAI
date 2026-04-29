@@ -83,8 +83,8 @@ export class OrdenService {
 
     // Validación de Crédito
     if (metodoPago === 'CREDITO') {
-      const limite = Number(cliente.limiteCredito || 0);
-      const saldo = Number(cliente.saldoDeudor || 0);
+      const limite = Number((cliente as any).limite_credito || 0);
+      const saldo = Number((cliente as any).saldo_deudor || 0);
       const disponible = limite - saldo;
       
       if (totalFinal > disponible) {
@@ -144,7 +144,7 @@ export class OrdenService {
       if (metodoPago === 'CREDITO') {
         await tx.cliCliente.update({
           where: { id: clienteId },
-          data: { saldoDeudor: { increment: totalFinal } }
+          data: { saldo_deudor: { increment: totalFinal } }
         });
       }
 
@@ -190,7 +190,7 @@ export class OrdenService {
         if (orden.pago?.metodoPago === 'CREDITO') {
           await tx.cliCliente.update({
             where: { id: orden.clienteId },
-            data: { saldoDeudor: { decrement: orden.totalFinal } }
+            data: { saldo_deudor: { decrement: Number(orden.totalFinal) } }
           });
         }
       }

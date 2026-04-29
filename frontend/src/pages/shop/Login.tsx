@@ -32,12 +32,36 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <form onSubmit={handleLogin} className="w-full max-w-sm space-y-4 rounded-lg border p-6 shadow-sm">
-        <h2 className="text-2xl font-bold text-center">Iniciar Sesión</h2>
-        <Input placeholder="Correo electrónico" type="email" value={correo} onChange={(e) => setCorreo(e.target.value)} required />
-        <Input placeholder="Contraseña" type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} required />
-        <Button type="submit" className="w-full">Entrar</Button>
+    <div className="flex min-h-screen items-center justify-center bg-background dark:bg-background/95">
+      <form onSubmit={handleLogin} className="w-full max-w-sm space-y-6 rounded-3xl border dark:border-primary/10 p-8 shadow-xl dark:shadow-primary/5 bg-card dark:bg-card/50 backdrop-blur-sm">
+        <div className="space-y-2 text-center">
+          <h2 className="text-3xl font-black tracking-tight">Bienvenido</h2>
+          <p className="text-sm text-muted-foreground dark:text-muted-foreground/80">Ingresa tus credenciales para continuar</p>
+        </div>
+        <div className="space-y-4">
+          <Input 
+            placeholder="Correo electrónico" 
+            type="email" 
+            value={correo} 
+            onChange={(e) => setCorreo(e.target.value)} 
+            required 
+            className="h-12 px-4 rounded-xl bg-background dark:bg-muted/10"
+          />
+          <Input 
+            placeholder="Contraseña" 
+            type="password" 
+            value={contrasena} 
+            onChange={(e) => setContrasena(e.target.value)} 
+            required 
+            className="h-12 px-4 rounded-xl bg-background dark:bg-muted/10"
+          />
+        </div>
+        <Button type="submit" className="w-full h-12 text-lg font-bold rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+          Entrar
+        </Button>
+        <p className="text-center text-xs text-muted-foreground dark:text-muted-foreground/60">
+          ¿No tienes una cuenta? <span className="text-primary font-bold cursor-pointer hover:underline">Regístrate</span>
+        </p>
       </form>
     </div>
   );

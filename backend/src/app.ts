@@ -19,7 +19,8 @@ app.use(helmet({
       connectSrc: ["'self'", config.clientUrl, "https://plankton-app-4r36s.ondigitalocean.app"],
       scriptSrc: ["'self'", ...(config.nodeEnv !== 'production' ? ["'unsafe-eval'"] : [])],
       styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", 'data:'],
+      // Permitir imágenes del mismo origen, data URIs y localhost (dev cross-origin)
+      imgSrc: ["'self'", 'data:', 'blob:', 'http://localhost:*', config.clientUrl],
       objectSrc: ["'none'"],
       baseUri: ["'self'"],
     }

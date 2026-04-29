@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { ProductoService } from '../services/producto.service';
 import { filtroProductoSchema, crearProductoSchema } from '../schemas/producto.schema';
+import path from 'path';
 
 const service = new ProductoService();
 
@@ -53,6 +54,19 @@ export class ProductoController {
     try {
       const resultado = await service.listarParaAdmin(req.query);
       res.status(200).json({ success: true, data: resultado });
+    } catch (error) { next(error); }
+  }
+
+  static async uploadImagen(req: Request, res: Response, next: NextFunction) {
+    try {
+      if (!req.file) {
+        res.status(400).json({ success: false, message: 'No se recibió ningún archivo' });
+        return;
+      }
+      // URL relativa: funciona en prod (mismo origen) y en dev con proxy Vite /uploads → backend
+      const filename = path.basename(req.file.path);
+      const url = `/uploads/productos/${filename}`;
+      res.status(200).json({ success: true, data: { url }, message: 'Imagen subida exitosamente' });
     } catch (error) { next(error); }
   }
 }

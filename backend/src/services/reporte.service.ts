@@ -219,7 +219,9 @@ export class ReporteService {
       conversion, 
       kpis, 
       ordenesRecientes, 
-      actividadReciente
+      actividadReciente,
+      rfm,
+      cohortes
     ] = await Promise.all([
       this.repo.getVentasDiarias(inicio, fin),
       this.repo.getVentasPorCategoria(inicio, fin),
@@ -228,7 +230,9 @@ export class ReporteService {
       this.repo.getConversionStats(inicio, fin),
       this.repo.getKpisPrincipales(inicio, fin),
       this.repo.getOrdenesRecientes(),
-      this.repo.getActividadReciente()
+      this.repo.getActividadReciente(),
+      this.repo.getRFMAnalysis(),
+      this.repo.getCohortAnalysis()
     ]);
 
     return this.normalizarJson({
@@ -239,7 +243,9 @@ export class ReporteService {
       conversion, 
       kpis, 
       ordenesRecientes, 
-      actividadReciente 
+      actividadReciente,
+      rfm,
+      cohortes
     });
   }
 
