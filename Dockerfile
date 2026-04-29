@@ -38,8 +38,11 @@ COPY backend/package.json backend/package.json
 COPY backend/prisma backend/prisma
 COPY --from=build /app/backend/dist backend/dist
 COPY --from=build /app/frontend/dist frontend/dist
+# Directorio de uploads (persistente via volumen)
+RUN mkdir -p /app/uploads/productos
 
 EXPOSE 3000
+VOLUME ["/app/uploads"]
 
 # ORDEN CORRECTO:
 # 1. Migraciones (siempre, aplica cualquier ALTER TABLE pendiente)

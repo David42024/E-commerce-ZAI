@@ -28,9 +28,12 @@ services:
       RUN_SEED: "false"   # 👈 CONTROL DEL SEED
     ports:
       - "3000:3000"
+    volumes:
+      - uploads_data:/app/uploads
     depends_on:
       db:
         condition: service_healthy
 
 volumes:
   postgres_data:
+  uploads_data:
