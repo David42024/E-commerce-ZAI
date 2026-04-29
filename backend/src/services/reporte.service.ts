@@ -250,10 +250,24 @@ export class ReporteService {
   }
 
   async getReporteGestionPdf() {
-    // El service orquesta Puppeteer apuntando a una URL que renderiza el dashboard
-    const url = `http://localhost:${process.env.PORT || 3000}/internal/reportes/ventas-gestion`;
-    const buffer = await PdfGestion.generarPdfDesdeHtml(url);
-    
+    // Obtener datos del dashboard y generar PDF con PDFKit (sin Puppeteer/Chrome)
+    const now = new Date();
+    const fechaInicio = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+    const fechaFin = now.toISOString().split('T')[0];
+
+    const dto = { fechaInicio, fechaFin, campos: undefined, search: '', formato: 'pdf' as const };
+    const data = await this.getDatosDashboard(dto as any);
+
+    const buffer = await PdfGestion.generarPdf({
+      kpis: data.kpis,
+      ventasDiarias: data.ventasDiarias as any[],
+      ventasCategoria: data.ventasCategoria as any[],
+      productosMasVendidos: data.productosMasVendidos as any[],
+      resumenFinanciero: data.resumenFinanciero,
+      fechaInicio,
+      fechaFin,
+    });
+
     return {
       nombreArchivo: `reporte_gestion_ventas_${Date.now()}.pdf`,
       buffer,
