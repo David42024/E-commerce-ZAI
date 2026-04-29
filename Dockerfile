@@ -42,11 +42,13 @@ COPY --from=build /app/frontend/dist frontend/dist
 EXPOSE 3000
 
 # ORDEN CORRECTO:
-# 1. Migraciones
+# 1. Migraciones (siempre, aplica cualquier ALTER TABLE pendiente)
 # 2. Seed (solo si activas flag)
 # 3. Start backend
 
 CMD ["sh", "-c", "\
+echo 'Running migrations...' && \
+npx prisma migrate deploy --schema backend/prisma/schema.prisma && \
 if [ \"$RUN_SEED\" = \"true\" ]; then \
   echo 'Running seed...' && node backend/dist/prisma/seed.js; \
 else \
