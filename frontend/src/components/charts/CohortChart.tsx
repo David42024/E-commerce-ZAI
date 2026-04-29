@@ -1,12 +1,9 @@
 import { 
-  BarChart, 
-  Bar, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
   ResponsiveContainer, 
-  Legend,
   AreaChart,
   Area
 } from 'recharts';

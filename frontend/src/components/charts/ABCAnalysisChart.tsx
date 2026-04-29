@@ -74,7 +74,7 @@ export function ABCAnalysisChart({ data }: ABCAnalysisChartProps) {
               fontWeight: 'bold',
               boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
             }}
-            formatter={(value: number, name: string, props: any) => [
+            formatter={(value: number, _name: string, props: any) => [
               `S/ ${value.toFixed(2)} (${props.payload.classification})`, 
               'Ingresos'
             ]}

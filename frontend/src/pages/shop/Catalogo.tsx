@@ -5,8 +5,8 @@ import { categoriaService } from '@/services/categoria.service';
 import { ProductCard } from '@/components/producto/product-card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Filter, SlidersHorizontal, ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Search, Filter, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Catalogo() {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -83,7 +83,7 @@ export function RFMChart({ data }: RFMChartProps) {
             }}
           />
           <Scatter name="Clientes" data={chartData}>
-            {chartData.map((entry, index) => (
+            {chartData.map((_entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Scatter>

@@ -22,7 +22,6 @@ import {
   Smartphone,
   Banknote,
   Info,
-  Zap,
   Wallet
 } from 'lucide-react';
 import { cn } from '@/lib/utils';

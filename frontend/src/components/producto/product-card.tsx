@@ -8,7 +8,6 @@ import toast from 'react-hot-toast';
 import { ShoppingCart, Eye, Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
 import { clsx } from 'clsx';
 
 interface Props {

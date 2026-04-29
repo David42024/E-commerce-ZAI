@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { ItemCarrito } from '@/types';
 import { Trash2, Minus, Plus, Info } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { cn } from '@/lib/utils';
 
 interface Props {
   item: ItemCarrito;
